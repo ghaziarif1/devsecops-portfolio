@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  portfolio:
+    build: .
+    image: cv-docker
+    container_name: cv-compose
+    ports:
+      - "8081:80"        # ← modifié de 8080 en 8081
+    restart: unless-stopped

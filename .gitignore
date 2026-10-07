@@ -1,0 +1,19 @@
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Docker (si vous voulez ignorer les volumes)
+# volumes/
+
+# Backup
+*.bak
