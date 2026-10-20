@@ -5,21 +5,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Récupération du dépôt GitHub...'
                 checkout scm
                 sh 'git log --oneline -3'
             }
         }
-
         stage('Install Dependencies') {
             steps {
-                echo 'Installation des dépendances Next.js...'
-                dir('next-version') {    // ← retirer si choix B
-                    sh 'node --version'
-                    sh 'npm --version'
+                dir('next-version') {    
                     sh 'npm ci'
                 }
             }
         }
+        stage('Build') {
+            steps {
+                dir('next-version') {    
+                    sh 'npm run build'
+                }
+            }
+        }
+    }
+
+    post {
+        success { echo '✅ Build réussi.' }
+        failure { echo '❌ Build échoué.' }
     }
 }
